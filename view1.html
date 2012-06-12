@@ -1,0 +1,43 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="content" style="font-size: 24px"></div>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+
+<script type="text/javascript">
+
+    Employee = Backbone.Model.extend({
+        urlRoot: "api/employees"
+    });
+
+    $('#content').append('<input id="firstName" type="text"/><br/>');
+    $('#content').append('<input id="lastName" type="text" /><br/><br/>');
+    $('#content').append('<button class="save">Save</button>');
+
+    employee = new Employee({id: 1});
+
+    employee.fetch({
+        success: function() {
+            $('#firstName').val(employee.get('firstName'));
+            $('#lastName').val(employee.get('lastName'));
+        }
+    });
+
+    $('.save').on('click', function() {
+        save();
+    });
+
+    function save() {
+        employee.save({firstName: $('#firstName').val(), lastName: $('#lastName').val()});
+    }
+
+</script>
+
+</body>
+</html>

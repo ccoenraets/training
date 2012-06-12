@@ -1,0 +1,49 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="list"></div>
+<div class="summary"></div>
+<div class="details"></div>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+
+<script type="text/javascript">
+
+    Router = Backbone.Router.extend({
+
+        routes: {
+            ""                      : "list",
+            "employees/:id"         : "summary",
+            "employees/:id/reports" : "reports",
+            "employees/:id/map"     : "map"
+        },
+
+        list: function() {
+            $('.list').html('<h1>Employee List</h1>');
+        },
+
+        summary: function(id) {
+            $('.summary').html('<h1>Employee ' + id + ' Details</h1>');
+        },
+
+        reports: function(id) {
+            $('.details').html('<h1>Employee ' + id + ' Reports</h1>');
+        },
+
+        map: function(id) {
+            $('.details').html('<h1>Employee ' + id + ' Map</h1>');
+        }
+    });
+
+    app = new Router();
+    Backbone.history.start();
+
+</script>
+
+</body>
+</html>

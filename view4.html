@@ -1,0 +1,32 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="content"></div>
+
+<script type="text/template" id="employee-tpl">
+    <input id="firstName" type="text" value="<%= firstName %>" /><br/>
+    <input id="lastName" type="text" value="<%= lastName %>" /><br/><br/>
+    <button class="save">Save</button>
+</script>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+<script type="text/javascript" src="js/employee-model.js"></script>
+<script type="text/javascript" src="js/employee-view.js"></script>
+
+<script type="text/javascript">
+
+    employee = new Employee({id: 1});
+
+    employee.fetch({success: function() {
+        new EmployeeView({model: employee, el: '#content'});
+    }});
+
+</script>
+
+</body>
+</html>

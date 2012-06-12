@@ -1,0 +1,50 @@
+<html>
+<head>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div id="content"></div>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+
+<script type="text/javascript">
+
+    Employee = Backbone.Model.extend({
+        urlRoot: "api/employees"
+    });
+
+    EmployeeView = Backbone.View.extend({
+
+        initialize: function() {
+            this.render();
+        },
+
+        events: {
+            "click .save": "save"
+        },
+
+        render: function() {
+            $(this.el).append('<input id="firstName" type="text" value="' + this.model.get('firstName') + '" /><br/>');
+            $(this.el).append('<input id="lastName" type="text" value="' + this.model.get('lastName') + '" /><br/><br/>');
+            $(this.el).append('<button class="save">Save</button>');
+        },
+
+        save: function() {
+            this.model.save({firstName: $('#firstName').val(), lastName: $('#lastName').val()});
+        }
+
+    });
+
+    employee = new Employee({id: 1});
+
+    employee.fetch({success: function() {
+        new EmployeeView({model: employee, el: '#content'});
+    }});
+
+</script>
+
+</body>
+</html>

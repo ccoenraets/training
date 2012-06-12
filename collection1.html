@@ -1,0 +1,33 @@
+<html>
+<body>
+
+<div id="content">
+
+    <ul id="list"></ul>
+
+</div>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+
+<script type="text/javascript">
+
+    EmployeeCollection = Backbone.Collection.extend({
+        url: "api/employees"
+    });
+
+    list = new EmployeeCollection();
+
+    list.on('reset', function() {
+        _.each(list.models, function(employee) {
+            $('ul').append('<li>' + employee.get('firstName') + '</li>');
+        })
+    });
+
+    list.fetch();
+
+</script>
+
+</body>
+</html>

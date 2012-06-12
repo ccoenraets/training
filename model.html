@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<div id="content"></div>
+
+<script type="text/javascript" src="lib/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="lib/underscore-min.js"></script>
+<script type="text/javascript" src="lib/backbone-min.js"></script>
+
+<script type="text/javascript">
+
+    Employee = Backbone.Model.extend({
+        urlRoot: "api/employees"
+    });
+
+    employee = new Employee({id: 30, firstName: 'Chris', lastName: 'Coenraets'});
+    employee.save();
+
+</script>
+
+</body>
+</html>
